@@ -1,0 +1,128 @@
+name: flutter_memo
+
+packages:
+  - app
+  - data/repository
+  - data/datastore
+  - model
+
+sdkPath: .fvm/flutter_sdk
+
+scripts:
+  prepare: melos bs
+
+# ---------------------------------- run app -----------------------------------
+
+  app:
+    run: flutter run
+    exec:
+      failFast: true
+    select-package:
+      scope: "flutter_memo"
+
+# ------------------------------ run build_runner ------------------------------
+ 
+  build_runner:all:
+    run: |
+      melos run build_runner:data:repository
+      melos run build_runner:model
+
+  build_runner:data:repository:
+    run: |
+      flutter pub run build_runner build
+    exec:
+      failFast: true
+    select-package:
+      scope: "repository"
+
+  build_runner:model:
+    run: |
+      flutter pub run build_runner build
+    exec:
+      failFast: true
+    select-package:
+      scope: "model"
+
+# ---------------------------------- analyze -----------------------------------
+
+  analyze:all:
+    run: |
+      melos run analyze:model
+      melos run analyze:data:datastore
+      melos run analyze:data:repository
+      melos run analyze:app
+
+  analyze:app:
+    run:
+      flutter analyze
+    exec:
+      failFast: true
+    select-package:
+      scope: "flutter_memo"
+
+  analyze:model:
+    run:
+      flutter analyze
+    exec:
+      failFast: true
+    select-package:
+      scope: "model"
+
+  analyze:data:repository:
+    run:
+      flutter analyze
+    exec:
+      failFast: true
+    select-package:
+      scope: "repository"
+
+  analyze:data:datastore:
+    run:
+      flutter analyze
+    exec:
+      failFast: true
+    select-package:
+      scope: "datastore"
+
+# ------------------------------------ Test ------------------------------------
+
+  test:all:
+    run: |
+      melos run test:app
+      melos run test:model
+      melos run test:data:repository
+      melos run test:data:datastore
+
+  test:app:
+    run:
+      flutter test
+    exec:
+      failFast: true
+    select-package:
+      scope: "flutter_memo"
+
+  test:model:
+    run: |
+      melos run build_runner:model # for freezed
+      flutter test
+    exec:
+      failFast: true
+    select-package:
+      scope: "model"
+
+  test:data:repository:
+    run: |
+      melos run build_runner:data:repository # for mockito
+      flutter test
+    exec:
+      failFast: true
+    select-package:
+      scope: "repository"
+
+  test:data:datastore:
+    run:
+      flutter test
+    exec:
+      failFast: true
+    select-package:
+      scope: "datastore"
