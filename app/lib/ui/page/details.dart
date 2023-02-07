@@ -4,9 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
 
 class DetailPage extends ConsumerWidget {
-  final int noteId;
 
   const DetailPage(this.noteId, {super.key});
+
+  final int noteId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

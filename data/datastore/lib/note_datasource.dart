@@ -16,7 +16,7 @@ class NoteDataSource extends LocalDataSource<Note> {
       whereArgs: [value.id],
     ).then((v) {
       if (v == 0) {
-        throw Exception("No value was deleted");
+        throw Exception('No value was deleted');
       }
     });
   }
@@ -26,7 +26,8 @@ class NoteDataSource extends LocalDataSource<Note> {
       join(await getDatabasesPath(), 'note.db'),
       onCreate: (db, version) async {
         return await db.execute(
-            'CREATE TABLE $tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, summary TEXT)');
+          'CREATE TABLE $tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, summary TEXT)',
+        );
       },
       version: 1,
     );
@@ -43,7 +44,7 @@ class NoteDataSource extends LocalDataSource<Note> {
     )
         .then((v) {
       if (v == 0) {
-        throw Exception("No value was inserted");
+        throw Exception('No value was inserted');
       }
     });
   }

@@ -3,9 +3,10 @@ import 'package:model/note.dart';
 import 'package:repository/repository.dart';
 
 class NoteRepository extends Repository<Note> {
-  final LocalDataSource<Note> dataSource;
 
   NoteRepository(this.dataSource);
+
+  final LocalDataSource<Note> dataSource;
 
   @override
   Future<void> add(Note value) => dataSource.insert(value);

@@ -9,7 +9,7 @@ import 'package:repository/note_repository.dart';
 @GenerateNiceMocks([MockSpec<NoteDataSource>()])
 import 'repository_test.mocks.dart';
 
-main() {
+Future<void> main() async {
   late LocalDataSource<Note> dataSource;
 
   setUp(() {

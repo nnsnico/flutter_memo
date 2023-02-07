@@ -35,7 +35,7 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: 'detail/:noteId',
           builder: (context, state) {
-            final id = int.tryParse(state.params['noteId'] ?? "");
+            final id = int.tryParse(state.params['noteId'] ?? '');
             if (id != null) {
               return DetailPage(id);
             } else {

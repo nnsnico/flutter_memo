@@ -1,11 +1,10 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'note.freezed.dart';
 
 @freezed
 class Note with _$Note {
-  const Note._();
 
   const factory Note({
     int? id,
@@ -13,15 +12,17 @@ class Note with _$Note {
     required String summary,
   }) = _Note;
 
+  factory Note.fromMap(Map<String, dynamic> map) {
+    return Note(id: map['id'], title: map['title'], summary: map['summary']);
+  }
+
+  const Note._();
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'summary': summary,
     };
-  }
-
-  factory Note.fromMap(Map<String, dynamic> map) {
-    return Note(id: map['id'], title: map['title'], summary: map['summary']);
   }
 }

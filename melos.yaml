@@ -9,12 +9,14 @@ packages:
 sdkPath: .fvm/flutter_sdk
 
 scripts:
-  prepare: melos bs
+  prepare: melos bs && melos run build_runner:all
 
 # ---------------------------------- run app -----------------------------------
 
   app:
-    run: flutter run
+    run: |
+      melos run analyze:all && 
+      flutter run
     exec:
       failFast: true
     select-package:
@@ -24,7 +26,7 @@ scripts:
  
   build_runner:all:
     run: |
-      melos run build_runner:data:repository
+      melos run build_runner:data:repository && 
       melos run build_runner:model
 
   build_runner:data:repository:
@@ -47,9 +49,9 @@ scripts:
 
   analyze:all:
     run: |
-      melos run analyze:model
-      melos run analyze:data:datastore
-      melos run analyze:data:repository
+      melos run analyze:model && 
+      melos run analyze:data:datastore && 
+      melos run analyze:data:repository && 
       melos run analyze:app
 
   analyze:app:
@@ -88,9 +90,9 @@ scripts:
 
   test:all:
     run: |
-      melos run test:app
-      melos run test:model
-      melos run test:data:repository
+      melos run test:app && 
+      melos run test:model && 
+      melos run test:data:repository && 
       melos run test:data:datastore
 
   test:app:
@@ -103,7 +105,6 @@ scripts:
 
   test:model:
     run: |
-      melos run build_runner:model # for freezed
       flutter test
     exec:
       failFast: true
@@ -112,7 +113,6 @@ scripts:
 
   test:data:repository:
     run: |
-      melos run build_runner:data:repository # for mockito
       flutter test
     exec:
       failFast: true

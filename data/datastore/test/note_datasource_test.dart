@@ -4,7 +4,7 @@ import 'package:model/note.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-Future main() async {
+Future<void> main() async {
   late TestDataSource dataSource;
   late Database database;
 
@@ -36,8 +36,10 @@ Future main() async {
         const target = Note(id: 1, title: 'test1', summary: 'test1');
         await dataSource.insert(target);
 
-        expect(() async => await dataSource.insert(target),
-            throwsA(isA<Exception>()));
+        expect(
+          () async => await dataSource.insert(target),
+          throwsA(isA<Exception>()),
+        );
       });
     });
 
@@ -56,8 +58,10 @@ Future main() async {
         await database.insert(dataSource.tableName, target.toMap());
         final nonExistsIdValue = target.copyWith(id: 2);
 
-        expect(() async => await dataSource.delete(nonExistsIdValue),
-            throwsA(isA<Exception>()));
+        expect(
+          () async => await dataSource.delete(nonExistsIdValue),
+          throwsA(isA<Exception>()),
+        );
       });
     });
 
@@ -95,7 +99,8 @@ class TestDataSource extends NoteDataSource {
       inMemoryDatabasePath,
       onCreate: (db, version) async {
         return await db.execute(
-            'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, title TEXT, summary TEXT)');
+          'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, title TEXT, summary TEXT)',
+        );
       },
       version: 1,
     );

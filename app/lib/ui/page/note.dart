@@ -12,8 +12,8 @@ class NotePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final noteList = ref.watch(noteListProvider.notifier);
     final itemFocusNode = useFocusNode();
-    final titleState = useState<String>("");
-    final summaryState = useState<String>("");
+    final titleState = useState<String>('');
+    final summaryState = useState<String>('');
     // final itemIsFocused = useIsFocused(itemFocusNode);
 
     return Scaffold(
