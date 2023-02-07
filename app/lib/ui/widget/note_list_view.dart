@@ -16,7 +16,7 @@ class NoteListView extends ConsumerWidget {
           return ListView.builder(
             itemCount: notes.length,
             itemBuilder: (context, index) {
-              final item = notes[index];
+              final note = notes[index];
               return ListTile(
                 onLongPress: () {
                   showDialog(
@@ -26,17 +26,17 @@ class NoteListView extends ConsumerWidget {
                         title: const Text('Delete this note?'),
                         actions: [
                           TextButton(
-                            onPressed: () => context.pop(),
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
                             onPressed: () {
                               ref
                                   .read(noteListProvider.notifier)
-                                  .removeNote(notes[index]);
+                                  .removeNote(note);
                               context.pop();
                             },
                             child: const Text('OK'),
+                          ),
+                          TextButton(
+                            onPressed: () => context.pop(),
+                            child: const Text('Cancel'),
                           ),
                         ],
                       );
@@ -44,9 +44,9 @@ class NoteListView extends ConsumerWidget {
                   );
                 },
                 onTap: () {
-                  context.go('/detail/${item.id}');
+                  context.go('/detail/${note.id}');
                 },
-                title: Text(item.title),
+                title: Text(note.title),
               );
             },
           );

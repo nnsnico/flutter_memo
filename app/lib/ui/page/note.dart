@@ -62,17 +62,12 @@ class NotePage extends HookConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          if (titleState.value.isNotEmpty && summaryState.value.isNotEmpty) {
+          final title = titleState.value;
+          final summary = summaryState.value;
+          if (title.isNotEmpty && summary.isNotEmpty) {
             await noteList
-                .addNote(
-              Note(
-                title: titleState.value,
-                summary: summaryState.value,
-              ),
-            )
-                .then((_) {
-              context.pop();
-            });
+                .addNote(Note(title: title, summary: summary))
+                .then((_) => context.pop());
           } else {
             debugPrint('title or summary is empty.');
           }
