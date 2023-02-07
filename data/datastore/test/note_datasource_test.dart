@@ -23,57 +23,67 @@ Future main() async {
   });
 
   group('NoteDataSource', () {
-    test('`insert` should succeed', () async {
-      const target = Note(id: 1, title: 'test1', summary: 'test1');
-      await dataSource.insert(target);
+    group('`insert`', () {
+      test('should succeed', () async {
+        const target = Note(id: 1, title: 'test1', summary: 'test1');
+        await dataSource.insert(target);
 
-      expect(await database.query(dataSource.tableName), [target.toMap()]);
+        expect(await database.query(dataSource.tableName), [target.toMap()]);
+      });
+
+      test('should throw Exception when attempt to insert duplicated id',
+          () async {
+        const target = Note(id: 1, title: 'test1', summary: 'test1');
+        await dataSource.insert(target);
+
+        expect(() async => await dataSource.insert(target),
+            throwsA(isA<Exception>()));
+      });
     });
 
-    test('`insert` should throw Exception when attempt to insert duplicated id',
-        () async {
-      const target = Note(id: 1, title: 'test1', summary: 'test1');
-      await dataSource.insert(target);
+    group('`delete`', () {
+      test('should succeed', () async {
+        const target = Note(id: 1, title: 'test2', summary: 'test2');
+        await database.insert(dataSource.tableName, target.toMap());
+        await dataSource.delete(target);
 
-      expect(() async => await dataSource.insert(target),
-          throwsA(isA<Exception>()));
+        expect(await database.query(dataSource.tableName), []);
+      });
+
+      test('should throw Exception when attempt to delete non-exists id',
+          () async {
+        const target = Note(id: 1, title: 'test2', summary: 'test2');
+        await database.insert(dataSource.tableName, target.toMap());
+        final nonExistsIdValue = target.copyWith(id: 2);
+
+        expect(() async => await dataSource.delete(nonExistsIdValue),
+            throwsA(isA<Exception>()));
+      });
     });
 
-    test('`delete` should succeed', () async {
-      const target = Note(id: 1, title: 'test2', summary: 'test2');
-      await database.insert(dataSource.tableName, target.toMap());
-    });
+    group('`queryAll`', () {
+      test('should all be equivalent to list after insertion', () async {
+        final target = List.of([
+          const Note(id: 1, title: 'test1', summary: 'test1 summary'),
+          const Note(id: 2, title: 'test2', summary: 'test2 summary'),
+          const Note(id: 3, title: 'test3', summary: 'test3 summary'),
+        ]);
+        for (final note in target) {
+          await database.insert(
+            dataSource.tableName,
+            note.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.ignore,
+          );
+        }
+        final result = await dataSource.queryAll();
 
-    test('`delete` should throw Exception when attempt to delete non-exists id',
-        () async {
-      const target = Note(id: 1, title: 'test2', summary: 'test2');
-      expect(() async => await dataSource.delete(target),
-          throwsA(isA<Exception>()));
-    });
+        expect(result, target);
+      });
 
-    test('`queryAll` should all be equivalent to list after insertion',
-        () async {
-      final target = List.of([
-        const Note(id: 1, title: 'test1', summary: 'test1 summary'),
-        const Note(id: 2, title: 'test2', summary: 'test2 summary'),
-        const Note(id: 3, title: 'test3', summary: 'test3 summary'),
-      ]);
-      for (final note in target) {
-        await database.insert(
-          dataSource.tableName,
-          note.toMap(),
-          conflictAlgorithm: ConflictAlgorithm.ignore,
-        );
-      }
-      final result = await dataSource.queryAll();
-
-      expect(result, target);
-    });
-
-    test('`queryAll` should returned empty list when query result is none',
-        () async {
-      final result = await dataSource.queryAll();
-      expect(result, []);
+      test('should returned empty list when query result is none', () async {
+        final result = await dataSource.queryAll();
+        expect(result, []);
+      });
     });
   });
 }
