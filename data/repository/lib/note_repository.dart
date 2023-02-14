@@ -3,24 +3,22 @@ import 'package:model/note.dart';
 import 'package:repository/repository.dart';
 
 class NoteRepository extends Repository<Note> {
+  NoteRepository(this._dataSource);
 
-  NoteRepository(this.dataSource);
-
-  final LocalDataSource<Note> dataSource;
-
-  @override
-  Future<void> add(Note value) => dataSource.insert(value);
+  final LocalDataSource<Note> _dataSource;
 
   @override
-  Future<List<Note>> getAll() async => dataSource.queryAll().then(
-        (value) {
-          if (value == null) {
-            return [];
-          } else {
-            return value;
-          }
-        });
+  Future<void> add(Note value) => _dataSource.insert(value);
 
   @override
-  Future<void> remove(Note value) => dataSource.delete(value);
+  Future<List<Note>> getAll() async => _dataSource.queryAll().then((value) {
+        if (value == null) {
+          return [];
+        } else {
+          return value;
+        }
+      });
+
+  @override
+  Future<void> remove(Note value) => _dataSource.delete(value);
 }

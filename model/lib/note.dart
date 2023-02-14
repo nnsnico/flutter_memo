@@ -5,7 +5,6 @@ part 'note.freezed.dart';
 
 @freezed
 class Note with _$Note {
-
   const factory Note({
     int? id,
     required String title,
