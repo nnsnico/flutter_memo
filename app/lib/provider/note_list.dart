@@ -5,11 +5,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
 
 final noteListProvider =
-    AsyncNotifierProvider<NoteListNotifier, List<Note>>(() {
-  return NoteListNotifier();
+    AsyncNotifierProvider<_NoteListNotifier, List<Note>>(() {
+  return _NoteListNotifier();
 });
 
-class NoteListNotifier extends AsyncNotifier<List<Note>> {
+class _NoteListNotifier extends AsyncNotifier<List<Note>> {
   Future<void> addNote(Note note) async {
     final repository = ref.read(noteRepositoryProvider);
     state = const AsyncValue.loading();

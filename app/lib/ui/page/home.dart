@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_memo/ui/widget/note_list_view.dart';
+import 'package:flutter_memo/ui/widget/note_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,7 +10,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Memo')),
-      body: const NoteListView(),
+      body: const NoteList(),
       floatingActionButton: FloatingActionButton(
         heroTag: 'note_button',
         onPressed: () => context.go('/note'),

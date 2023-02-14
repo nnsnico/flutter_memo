@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_memo/notifier/note_list.dart';
+import 'package:flutter_memo/provider/note_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_memo/notifier/note_list.dart';
+import 'package:flutter_memo/provider/note_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class NoteListView extends ConsumerWidget {
-  const NoteListView({key}) : super(key: key);
+class NoteList extends ConsumerWidget {
+  const NoteList({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
