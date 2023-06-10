@@ -19,7 +19,7 @@ scripts:
       flutter run
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "flutter_memo"
 
 # ------------------------------ run build_runner ------------------------------
@@ -34,7 +34,7 @@ scripts:
       flutter pub run build_runner build
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "repository"
 
   build_runner:model:
@@ -42,7 +42,7 @@ scripts:
       flutter pub run build_runner build
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "model"
 
 # ---------------------------------- analyze -----------------------------------
@@ -59,7 +59,7 @@ scripts:
       flutter analyze
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "flutter_memo"
 
   analyze:model:
@@ -67,7 +67,7 @@ scripts:
       flutter analyze
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "model"
 
   analyze:data:repository:
@@ -75,7 +75,7 @@ scripts:
       flutter analyze
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "repository"
 
   analyze:data:datastore:
@@ -83,7 +83,7 @@ scripts:
       flutter analyze
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "datastore"
 
 # ------------------------------------ Test ------------------------------------
@@ -100,7 +100,7 @@ scripts:
       flutter test
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "flutter_memo"
 
   test:model:
@@ -108,7 +108,7 @@ scripts:
       flutter test
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "model"
 
   test:data:repository:
@@ -116,7 +116,7 @@ scripts:
       flutter test
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "repository"
 
   test:data:datastore:
@@ -124,5 +124,5 @@ scripts:
       flutter test
     exec:
       failFast: true
-    select-package:
+    packageFilters:
       scope: "datastore"
