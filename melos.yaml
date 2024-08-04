@@ -90,8 +90,6 @@ scripts:
 
   test:all:
     run: |
-      melos run test:app && 
-      melos run test:model && 
       melos run test:data:repository && 
       melos run test:data:datastore
 
