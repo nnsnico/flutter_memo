@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NoteList extends ConsumerWidget {
-  const NoteList({key}) : super(key: key);
+  const NoteList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +54,7 @@ class NoteList extends ConsumerWidget {
           return Center(
             child: Text(
               'ないよ',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           );
         }

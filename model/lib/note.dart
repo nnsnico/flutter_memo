@@ -11,8 +11,12 @@ class Note with _$Note {
     required String summary,
   }) = _Note;
 
-  factory Note.fromMap(Map<String, dynamic> map) {
-    return Note(id: map['id'], title: map['title'], summary: map['summary']);
+  factory Note.fromMap(Map<String, Object?> map) {
+    return Note(
+      id: map['id'] as int?,
+      title: map['title'] as String,
+      summary: map['summary'] as String,
+    );
   }
 
   const Note._();

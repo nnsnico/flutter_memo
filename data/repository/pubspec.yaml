@@ -5,7 +5,7 @@ publish_to: 'none'
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
@@ -18,15 +18,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  mockito:
-  build_runner:
+  flutter_lints: ^3.0.1
+  mockito: '^5.4.2'
+  build_runner: ^2.4.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
+# flutter:
 
   # To add assets to your package, add an assets section, like this:
   # assets:

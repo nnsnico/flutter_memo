@@ -16,7 +16,7 @@ class Counter extends ConsumerWidget {
           const Text('You have pushed the button this many times:'),
           Text(
             '$count',
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           )
         ],
       ),
