@@ -124,3 +124,14 @@ scripts:
       failFast: true
     packageFilters:
       scope: "datastore"
+
+# -------------------------------- dependencies --------------------------------
+
+  deps:model:
+    run: flutter pub deps -C model -s compact
+
+  deps:data:repository:
+    run: flutter pub deps -C data/repository -s compact
+
+  deps:data:datastore:
+    run: flutter pub deps -C data/datastore -s compact
