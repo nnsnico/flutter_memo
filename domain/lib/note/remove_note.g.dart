@@ -6,7 +6,7 @@ part of 'remove_note.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$removeNoteHash() => r'b8a642ed8a9e9c59103c66a7168cb03da198b759';
+String _$removeNoteHash() => r'62542dd49b1da4689b496289d07a7f2a16d13340';
 
 /// Copied from Dart SDK
 class _SystemHash {

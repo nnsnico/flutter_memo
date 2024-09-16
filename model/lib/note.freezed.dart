@@ -109,7 +109,7 @@ class __$$NoteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NoteImpl extends _Note with DiagnosticableTreeMixin {
+class _$NoteImpl extends _Note {
   const _$NoteImpl({this.id, required this.title, required this.summary})
       : super._();
 
@@ -121,18 +121,8 @@ class _$NoteImpl extends _Note with DiagnosticableTreeMixin {
   final String summary;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Note(id: $id, title: $title, summary: $summary)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Note'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('summary', summary));
   }
 
   @override
