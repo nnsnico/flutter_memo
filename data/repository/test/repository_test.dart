@@ -35,10 +35,10 @@ Future<void> main() async {
     test(
         '`getAll` should return them when there are one or more value in dataSource',
         () async {
-        when(dataSource.queryAll()).thenAnswer((_) async => null);
-        final NoteRepository noteRepository = NoteRepository(dataSource);
-        final result = await noteRepository.getAll();
-        expect(result, []);
-      });
+      when(dataSource.queryAll()).thenAnswer((_) async => null);
+      final NoteRepository noteRepository = NoteRepository(dataSource);
+      final result = await noteRepository.getAll();
+      expect(result, []);
+    });
   });
 }

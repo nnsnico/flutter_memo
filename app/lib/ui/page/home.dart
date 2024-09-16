@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_memo/ui/widget/note_list.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Memo')),
       body: const NoteList(),

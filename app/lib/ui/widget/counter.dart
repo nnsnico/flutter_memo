@@ -17,7 +17,7 @@ class Counter extends ConsumerWidget {
           Text(
             '$count',
             style: Theme.of(context).textTheme.headlineMedium,
-          )
+          ),
         ],
       ),
     );
