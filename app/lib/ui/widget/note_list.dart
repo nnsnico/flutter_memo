@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_memo/provider/note_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:domain/note/remove_note.dart';
+import 'package:model/note.dart';
+import 'package:domain/note/get_list.dart';
 
 class NoteList extends ConsumerWidget {
   const NoteList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final noteList = ref.watch(noteListProvider);
+    final noteList = ref.watch(getNoteListProvider);
+
+    Future<void> removeNote(Note note) async {
+      ref.read(removeNoteProvider(note));
+    }
 
     return noteList.when(
       data: (notes) {
@@ -27,10 +33,7 @@ class NoteList extends ConsumerWidget {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              ref
-                                  .read(noteListProvider.notifier)
-                                  .removeNote(note);
-                              context.pop();
+                              removeNote(note).then((_) => context.pop());
                             },
                             child: const Text('OK'),
                           ),

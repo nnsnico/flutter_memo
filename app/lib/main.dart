@@ -1,4 +1,3 @@
-import 'package:datastore/note_datasource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_memo/logger.dart';
 import 'package:flutter_memo/ui/page/details.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_memo/ui/page/home.dart';
 import 'package:flutter_memo/ui/page/note.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repository/note_repository.dart';
 
 void main() => runApp(
       ProviderScope(
@@ -14,13 +12,6 @@ void main() => runApp(
         child: const MyApp(),
       ),
     );
-
-final noteDataSourceProvider = Provider((ref) {
-  return NoteDataSource();
-});
-final noteRepositoryProvider = Provider((ref) {
-  return NoteRepository(ref.read(noteDataSourceProvider));
-});
 
 final GoRouter _router = GoRouter(
   routes: [

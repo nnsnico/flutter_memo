@@ -31,12 +31,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  domain:
+    path: ../domain
   repository:
     path: ../data/repository/
   datastore:
     path: ../data/datastore/
   model:
     path: ../model/
+  collection: ^1.17.2
   flutter_hooks: ^0.20.5
   hooks_riverpod: ^2.4.10
   riverpod_annotation: ^2.3.4
@@ -50,6 +53,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.9
+  riverpod_generator: ^2.3.11
+  riverpod_lint: ^2.3.9
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -2,6 +2,7 @@ name: flutter_memo
 
 packages:
   - app
+  - domain
   - data/repository
   - data/datastore
   - model
@@ -26,8 +27,35 @@ scripts:
  
   build_runner:all:
     run: |
+      melos run build_runner:app && 
+      melos run build_runner:domain && 
       melos run build_runner:data:repository && 
+      melos run build_runner:data:datastore && 
       melos run build_runner:model
+
+  build_runner:app:
+    run: |
+      flutter pub run build_runner build --delete-conflicting-outputs
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "flutter_memo"
+
+  build_runner:domain:
+    run: |
+      flutter pub run build_runner build --delete-conflicting-outputs
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "domain"
+
+  build_runner:data:datastore:
+    run: |
+      flutter pub run build_runner build --delete-conflicting-outputs
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "datastore"
 
   build_runner:data:repository:
     run: |
@@ -61,6 +89,14 @@ scripts:
       failFast: true
     packageFilters:
       scope: "flutter_memo"
+
+  analyze:domain:
+    run:
+      flutter analyze
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "domain"
 
   analyze:model:
     run:
@@ -126,6 +162,12 @@ scripts:
       scope: "datastore"
 
 # -------------------------------- dependencies --------------------------------
+
+  deps:app:
+    run: flutter pub deps -C app -s compact
+
+  deps:domain:
+    run: flutter pub deps -C domain -s compact
 
   deps:model:
     run: flutter pub deps -C model -s compact

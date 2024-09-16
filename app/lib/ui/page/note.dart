@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_memo/provider/note_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
+import 'package:domain/note/add_note.dart';
 
 class NotePage extends HookConsumerWidget {
   const NotePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final noteList = ref.watch(noteListProvider.notifier);
     final itemFocusNode = useFocusNode();
     final titleState = useState<String>('');
     final summaryState = useState<String>('');
-    // final itemIsFocused = useIsFocused(itemFocusNode);
+
+    Future<void> addNote(Note note) async {
+      ref.read(addNoteProvider(note).future);
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('Create a note')),
@@ -65,8 +67,7 @@ class NotePage extends HookConsumerWidget {
           final title = titleState.value;
           final summary = summaryState.value;
           if (title.isNotEmpty && summary.isNotEmpty) {
-            await noteList
-                .addNote(Note(title: title, summary: summary))
+            await addNote(Note(title: title, summary: summary))
                 .then((_) => context.pop());
           } else {
             debugPrint('title or summary is empty.');
