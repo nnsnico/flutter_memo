@@ -99,55 +99,6 @@ scripts:
     packageFilters:
       scope: "model"
 
-# ---------------------------------- analyze -----------------------------------
-
-  analyze:all:
-    run: |
-      melos run analyze:model && 
-      melos run analyze:data:datastore && 
-      melos run analyze:data:repository && 
-      melos run analyze:app
-
-  analyze:app:
-    run:
-      flutter analyze
-    exec:
-      failFast: true
-    packageFilters:
-      scope: "flutter_memo"
-
-  analyze:domain:
-    run:
-      flutter analyze
-    exec:
-      failFast: true
-    packageFilters:
-      scope: "domain"
-
-  analyze:model:
-    run:
-      flutter analyze
-    exec:
-      failFast: true
-    packageFilters:
-      scope: "model"
-
-  analyze:data:repository:
-    run:
-      flutter analyze
-    exec:
-      failFast: true
-    packageFilters:
-      scope: "repository"
-
-  analyze:data:datastore:
-    run:
-      flutter analyze
-    exec:
-      failFast: true
-    packageFilters:
-      scope: "datastore"
-
 # ------------------------------------ Test ------------------------------------
 
   test:all:
