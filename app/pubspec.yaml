@@ -35,8 +35,6 @@ dependencies:
     path: ../domain
   repository:
     path: ../data/repository/
-  datastore:
-    path: ../data/datastore/
   model:
     path: ../model/
   collection: ^1.17.2

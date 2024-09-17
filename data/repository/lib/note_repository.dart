@@ -1,11 +1,11 @@
-import 'package:datastore/local_datasource.dart';
+import 'package:datastore/note_datasource.dart';
 import 'package:model/note.dart';
-import 'package:repository/repository.dart';
+import 'package:model/local_repository.dart';
 
-class NoteRepository extends Repository<Note> {
+class NoteRepository extends LocalRepository<Note> {
   NoteRepository(this._dataSource);
 
-  final LocalDataSource<Note> _dataSource;
+  final NoteDataSource _dataSource;
 
   @override
   Future<void> add(Note value) => _dataSource.insert(value);

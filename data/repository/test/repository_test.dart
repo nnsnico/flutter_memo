@@ -1,7 +1,6 @@
 import 'package:datastore/note_datasource.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:datastore/local_datasource.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:model/note.dart';
 import 'package:repository/note_repository.dart';
@@ -10,7 +9,7 @@ import 'package:repository/note_repository.dart';
 import 'repository_test.mocks.dart';
 
 Future<void> main() async {
-  late LocalDataSource<Note> dataSource;
+  late NoteDataSource dataSource;
 
   setUp(() {
     dataSource = MockNoteDataSource();

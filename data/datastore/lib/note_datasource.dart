@@ -1,13 +1,11 @@
-import 'package:datastore/local_datasource.dart';
 import 'package:model/note.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class NoteDataSource extends LocalDataSource<Note> {
+class NoteDataSource {
   final String tableName = 'notes';
   late Future<Database> database = initDatabase(tableName);
 
-  @override
   Future<void> delete(Note value) async {
     final db = await database;
     return db.delete(
@@ -33,7 +31,6 @@ class NoteDataSource extends LocalDataSource<Note> {
     );
   }
 
-  @override
   Future<void> insert(Note value) async {
     final db = await database;
     return db
@@ -49,7 +46,6 @@ class NoteDataSource extends LocalDataSource<Note> {
     });
   }
 
-  @override
   Future<List<Note>?> queryAll() async {
     final db = await database;
     final List<Map<String, dynamic>> map = await db.query(tableName);

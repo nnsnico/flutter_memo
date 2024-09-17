@@ -226,7 +226,7 @@ packages:
     source: hosted
     version: "2.3.6"
   datastore:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       path: "../data/datastore"
       relative: true
