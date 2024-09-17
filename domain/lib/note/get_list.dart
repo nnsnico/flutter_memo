@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:model/note.dart';
 import 'package:repository/provider.dart';
 
-part 'get_list.g.dart';
+part 'generated/get_list.g.dart';
 
 @riverpod
 Future<List<Note>> getNoteList(GetNoteListRef ref) async {

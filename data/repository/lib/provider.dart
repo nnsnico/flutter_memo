@@ -4,7 +4,7 @@ import 'package:model/note.dart';
 import 'package:model/local_repository.dart';
 import 'package:datastore/provider.dart';
 
-part 'provider.g.dart';
+part 'generated/provider.g.dart';
 
 @riverpod
 LocalRepository<Note> noteRepository(NoteRepositoryRef ref) {

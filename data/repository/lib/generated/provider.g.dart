@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'provider.dart';
+part of '../provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$noteDataSourceHash() => r'fe247c7c563a39b68407cdefc9a46a9504891eb5';
+String _$noteRepositoryHash() => r'3a8ff0e808af40806a87e19b2f290fe14ffe6552';
 
-/// See also [noteDataSource].
-@ProviderFor(noteDataSource)
-final noteDataSourceProvider = AutoDisposeProvider<NoteDataSource>.internal(
-  noteDataSource,
-  name: r'noteDataSourceProvider',
+/// See also [noteRepository].
+@ProviderFor(noteRepository)
+final noteRepositoryProvider =
+    AutoDisposeProvider<LocalRepository<Note>>.internal(
+  noteRepository,
+  name: r'noteRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$noteDataSourceHash,
+      : _$noteRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef NoteDataSourceRef = AutoDisposeProviderRef<NoteDataSource>;
+typedef NoteRepositoryRef = AutoDisposeProviderRef<LocalRepository<Note>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

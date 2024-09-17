@@ -6,7 +6,7 @@ import 'package:model/note.dart';
 import 'package:repository/note_repository.dart';
 
 @GenerateNiceMocks([MockSpec<NoteDataSource>()])
-import 'repository_test.mocks.dart';
+import 'mocks/repository_test.mocks.dart';
 
 Future<void> main() async {
   late NoteDataSource dataSource;
