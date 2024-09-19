@@ -21,4 +21,7 @@ class NoteRepository extends LocalRepository<Note> {
 
   @override
   Future<void> remove(Note value) => _dataSource.delete(value);
+
+  @override
+  Future<Note?> findById(int? id) => _dataSource.findNoteById(id);
 }

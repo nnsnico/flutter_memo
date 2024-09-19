@@ -46,9 +46,21 @@ class NoteDataSource {
     });
   }
 
+  Future<Note?> findNoteById(int? value) async {
+    final db = await database;
+    final List<Map<String, Object?>> map =
+        await db.query(tableName, where: 'id = $value');
+    final firstOfMap = map.elementAtOrNull(0);
+    if (firstOfMap != null) {
+      return Note.fromMap(firstOfMap);
+    } else {
+      return null;
+    }
+  }
+
   Future<List<Note>?> queryAll() async {
     final db = await database;
-    final List<Map<String, dynamic>> map = await db.query(tableName);
+    final List<Map<String, Object?>> map = await db.query(tableName);
     return List.generate(
       map.length,
       (i) => Note.fromMap(map[i]),

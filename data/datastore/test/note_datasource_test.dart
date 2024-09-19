@@ -64,6 +64,48 @@ Future<void> main() async {
       });
     });
 
+    group('`findNoteById`', () {
+      test('should be returned without crash when there is at least one value.',
+          () async {
+        const expectValue =
+            Note(id: 2, title: 'test2', summary: 'test2 summary');
+        final target = List.of([
+          const Note(id: 1, title: 'test1', summary: 'test1 summary'),
+          const Note(id: 2, title: 'test2', summary: 'test2 summary'),
+          const Note(id: 3, title: 'test3', summary: 'test3 summary'),
+        ]);
+        for (final note in target) {
+          await database.insert(
+            dataSource.tableName,
+            note.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.ignore,
+          );
+        }
+
+        Note? result = await dataSource.findNoteById(expectValue.id);
+        expect(result, expectValue);
+      });
+
+      test('should be returned null without crash when there is no value.',
+          () async {
+        final target = List.of([
+          const Note(id: 1, title: 'test1', summary: 'test1 summary'),
+          const Note(id: 2, title: 'test2', summary: 'test2 summary'),
+          const Note(id: 3, title: 'test3', summary: 'test3 summary'),
+        ]);
+        for (final note in target) {
+          await database.insert(
+            dataSource.tableName,
+            note.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.ignore,
+          );
+        }
+
+        Note? result = await dataSource.findNoteById(0);
+        expect(result, null);
+      });
+    });
+
     group('`queryAll`', () {
       test('should all be equivalent to list after insertion', () async {
         final target = List.of([
