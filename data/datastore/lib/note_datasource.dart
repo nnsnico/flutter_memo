@@ -1,13 +1,13 @@
 import 'package:model/note.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:datastore/src/note_dataSource_impl.dart';
 
 part 'generated/note_datasource.g.dart';
 
 @riverpod
 NoteDataSource noteDataSource(NoteDataSourceRef ref) {
-  return _NoteDataSourceImpl('notes');
+  return NoteDataSourceImpl('notes');
 }
 
 abstract class NoteDataSource {
@@ -73,19 +73,3 @@ abstract class NoteDataSource {
   }
 }
 
-class _NoteDataSourceImpl extends NoteDataSource {
-  _NoteDataSourceImpl(super.tableName);
-
-  @override
-  Future<Database> initDatabase(String tableName) async {
-    return openDatabase(
-      join(await getDatabasesPath(), 'note.db'),
-      onCreate: (db, version) async {
-        return await db.execute(
-          'CREATE TABLE $tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, summary TEXT)',
-        );
-      },
-      version: 1,
-    );
-  }
-}

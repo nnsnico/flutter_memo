@@ -1,4 +1,4 @@
-import 'package:repository/provider.dart';
+import 'package:repository/note_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:model/note.dart';
 

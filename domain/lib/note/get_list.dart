@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:model/note.dart';
-import 'package:repository/provider.dart';
+import 'package:repository/note_repository.dart';
 
 part 'generated/get_list.g.dart';
 

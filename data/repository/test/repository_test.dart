@@ -3,7 +3,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:model/note.dart';
-import 'package:repository/note_repository.dart';
+import 'package:model/local_repository.dart';
+import 'package:repository/src/note_repository_impl.dart';
 
 @GenerateNiceMocks([MockSpec<NoteDataSource>()])
 import 'mocks/repository_test.mocks.dart';
@@ -26,7 +27,7 @@ Future<void> main() async {
       ];
       when(dataSource.queryAll()).thenAnswer((_) async => expectValue);
 
-      final NoteRepository noteRepository = NoteRepository(dataSource);
+      final LocalRepository<Note> noteRepository = NoteRepositoryImpl(dataSource);
       final result = await noteRepository.getAll();
       expect(result, expectValue);
     });
@@ -35,7 +36,7 @@ Future<void> main() async {
         '`getAll` should return them when there are one or more value in dataSource',
         () async {
       when(dataSource.queryAll()).thenAnswer((_) async => null);
-      final NoteRepository noteRepository = NoteRepository(dataSource);
+      final LocalRepository<Note> noteRepository = NoteRepositoryImpl(dataSource);
       final result = await noteRepository.getAll();
       expect(result, []);
     });
