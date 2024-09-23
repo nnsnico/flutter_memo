@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../provider.dart';
+part of '../note_datasource.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$noteDataSourceHash() => r'fe247c7c563a39b68407cdefc9a46a9504891eb5';
+String _$noteDataSourceHash() => r'c2f43540829e9007ecba2feb2c2bddca39d50316';
 
 /// See also [noteDataSource].
 @ProviderFor(noteDataSource)

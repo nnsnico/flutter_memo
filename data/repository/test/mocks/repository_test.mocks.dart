@@ -52,37 +52,13 @@ class MockNoteDataSource extends _i1.Mock implements _i3.NoteDataSource {
       ) as String);
 
   @override
-  _i5.Future<_i2.Database> get database => (super.noSuchMethod(
-        Invocation.getter(#database),
-        returnValue: _i5.Future<_i2.Database>.value(_FakeDatabase_0(
-          this,
-          Invocation.getter(#database),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<_i2.Database>.value(_FakeDatabase_0(
-          this,
-          Invocation.getter(#database),
-        )),
-      ) as _i5.Future<_i2.Database>);
-
-  @override
-  set database(_i5.Future<_i2.Database>? _database) => super.noSuchMethod(
+  set tableName(String? _tableName) => super.noSuchMethod(
         Invocation.setter(
-          #database,
-          _database,
+          #tableName,
+          _tableName,
         ),
         returnValueForMissingStub: null,
       );
-
-  @override
-  _i5.Future<void> delete(_i6.Note? value) => (super.noSuchMethod(
-        Invocation.method(
-          #delete,
-          [value],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
 
   @override
   _i5.Future<_i2.Database> initDatabase(String? tableName) =>
@@ -109,6 +85,16 @@ class MockNoteDataSource extends _i1.Mock implements _i3.NoteDataSource {
       ) as _i5.Future<_i2.Database>);
 
   @override
+  _i5.Future<void> closeDatabase() => (super.noSuchMethod(
+        Invocation.method(
+          #closeDatabase,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   _i5.Future<void> insert(_i6.Note? value) => (super.noSuchMethod(
         Invocation.method(
           #insert,
@@ -117,6 +103,26 @@ class MockNoteDataSource extends _i1.Mock implements _i3.NoteDataSource {
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> delete(_i6.Note? value) => (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<_i6.Note?> findNoteById(int? value) => (super.noSuchMethod(
+        Invocation.method(
+          #findNoteById,
+          [value],
+        ),
+        returnValue: _i5.Future<_i6.Note?>.value(),
+        returnValueForMissingStub: _i5.Future<_i6.Note?>.value(),
+      ) as _i5.Future<_i6.Note?>);
 
   @override
   _i5.Future<List<_i6.Note>?> queryAll() => (super.noSuchMethod(

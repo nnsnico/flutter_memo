@@ -38,6 +38,14 @@ command:
 scripts:
   prepare: melos bs && melos run build_runner:all
 
+  outdated:
+    run: |
+      flutter pub outdated --show-all --transitive
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "flutter_memo"
+
 # ---------------------------------- run app -----------------------------------
 
   app:

@@ -13,8 +13,9 @@ Future<void> main() async {
   });
 
   setUp(() async {
-    dataSource = TestDataSource();
-    database = await dataSource.database;
+    const testDb = 'test';
+    dataSource = TestDataSource(testDb);
+    database = await dataSource.initDatabase(testDb);
   });
 
   tearDown(() async {
@@ -134,6 +135,8 @@ Future<void> main() async {
 }
 
 class TestDataSource extends NoteDataSource {
+  TestDataSource(super.tableName);
+
   @override
   Future<Database> initDatabase(String tableName) {
     return openDatabase(
