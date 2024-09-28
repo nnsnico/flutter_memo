@@ -39,9 +39,9 @@ dependencies:
     path: ../model/
   collection: ^1.18.0
   flutter_hooks: ^0.20.5
-  hooks_riverpod: ^2.4.10
-  riverpod_annotation: ^2.3.4
-  go_router: ^13.1.0
+  hooks_riverpod: ^2.5.2
+  riverpod_annotation: ^2.3.5
+  go_router: ^14.2.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,10 +51,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  analyzer: ^6.2.0
-  build_runner: ^2.4.9
-  riverpod_generator: ^2.3.11
-  riverpod_lint: ^2.3.9
+  analyzer: ^6.5.0
+  build_runner: ^2.4.12
+  riverpod_generator: ^2.4.3
+  riverpod_lint: ^2.3.13
   flutter_lints: ^3.0.1
   custom_lint:
 
