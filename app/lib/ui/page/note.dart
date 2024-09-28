@@ -67,8 +67,11 @@ class NotePage extends HookConsumerWidget {
           final title = titleState.value;
           final summary = summaryState.value;
           if (title.isNotEmpty && summary.isNotEmpty) {
-            await addNote(Note(title: title, summary: summary))
-                .then((_) => context.pop());
+            await addNote(Note(title: title, summary: summary)).then((_) {
+              if (context.mounted) {
+                context.pop();
+              }
+            });
           } else {
             debugPrint('title or summary is empty.');
           }

@@ -20,13 +20,14 @@ command:
         sdk: flutter
       go_router: ^13.1.0
       flutter_hooks: ^0.20.5
-      collection: ^1.17.2
+      collection: ^1.18.0
       hooks_riverpod: ^2.4.10
       riverpod_annotation: ^2.3.4
       freezed_annotation: ^2.4.4
     dev_dependencies:
       flutter_test:
         sdk: flutter
+      analyzer: ^6.2.0
       build_runner: ^2.4.9
       riverpod_generator: ^2.3.11
       riverpod_lint: ^2.3.9
@@ -50,7 +51,7 @@ scripts:
 
   app:
     run: |
-      melos run analyze:all && 
+      melos analyze && 
       flutter run
     exec:
       failFast: true

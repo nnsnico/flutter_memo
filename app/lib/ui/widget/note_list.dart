@@ -33,7 +33,11 @@ class NoteList extends ConsumerWidget {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              removeNote(note).then((_) => context.pop());
+                              removeNote(note).then((_) {
+                                if (context.mounted) {
+                                  context.pop();
+                                }
+                              });
                             },
                             child: const Text('OK'),
                           ),
