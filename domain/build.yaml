@@ -5,3 +5,7 @@ targets:
         options:
           build_extensions:
             '^lib/note/{{}}.dart': 'lib/note/generated/{{}}.g.dart'
+      mockito:mockBuilder:
+        options:
+          build_extensions:
+            '^test/{{}}.dart': 'test/mocks/{{}}.mocks.dart'

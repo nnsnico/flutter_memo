@@ -33,6 +33,7 @@ command:
       flutter_lints: ^3.0.1
       freezed: ^2.5.7
       mockito: '^5.4.4'
+      riverpod: '^2.5.1'
       riverpod_generator: ^2.4.3
       riverpod_lint: ^2.3.13
 
@@ -130,6 +131,14 @@ scripts:
       failFast: true
     packageFilters:
       scope: "model"
+
+  test:domain:
+    run: |
+      flutter test
+    exec:
+      failFast: true
+    packageFilters:
+      scope: "domain"
 
   test:data:repository:
     run: |
