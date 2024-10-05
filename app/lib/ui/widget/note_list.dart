@@ -1,9 +1,8 @@
+import 'package:domain/note/get_list.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:domain/note/remove_note.dart';
-import 'package:model/note.dart';
-import 'package:domain/note/get_list.dart';
+import '../widget/delete_dialog.dart';
 
 class NoteList extends ConsumerWidget {
   const NoteList({super.key});
@@ -11,10 +10,6 @@ class NoteList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final noteList = ref.watch(getNoteListProvider);
-
-    Future<void> removeNote(Note note) async {
-      ref.read(removeNoteProvider(note));
-    }
 
     return noteList.when(
       data: (notes) {
@@ -27,25 +22,9 @@ class NoteList extends ConsumerWidget {
                 onLongPress: () {
                   showDialog(
                     context: context,
-                    builder: (cxt) {
-                      return AlertDialog(
-                        title: const Text('Delete this note?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              removeNote(note).then((_) {
-                                if (context.mounted) {
-                                  context.pop();
-                                }
-                              });
-                            },
-                            child: const Text('OK'),
-                          ),
-                          TextButton(
-                            onPressed: () => context.pop(),
-                            child: const Text('Cancel'),
-                          ),
-                        ],
+                    builder: (context) {
+                      return DeleteDialog(
+                        deleteTarget: note,
                       );
                     },
                   );

@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:domain/note/get_note.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
+import '../widget/delete_dialog.dart';
 
 class DetailPage extends ConsumerWidget {
   const DetailPage(this.noteId, {super.key});
@@ -15,7 +17,32 @@ class DetailPage extends ConsumerWidget {
     return note.when(
       data: (Note? note) {
         return Scaffold(
-          appBar: AppBar(title: Text(note?.title ?? '')),
+          appBar: AppBar(
+            title: Text(note?.title ?? ''),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  if (note == null) {
+                    return;
+                  }
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DeleteDialog(
+                        deleteTarget: note,
+                        onCompleteDelete: () {
+                          if (context.mounted) {
+                            context.pop();
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
           body: Padding(
             padding: const EdgeInsets.all(8),
             child: note != null
