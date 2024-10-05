@@ -1,9 +1,9 @@
+import 'package:domain/note/add_note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:model/note.dart';
-import 'package:domain/note/add_note.dart';
 
 class NotePage extends HookConsumerWidget {
   const NotePage({super.key});

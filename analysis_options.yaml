@@ -10,6 +10,7 @@ analyzer:
 linter:
   rules:
     - always_declare_return_types
+    - directives_ordering
     - prefer_single_quotes
     - require_trailing_commas
     - sort_constructors_first
