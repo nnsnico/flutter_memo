@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:domain/note/get_note.dart';
+import 'package:model/note.dart';
 
 class DetailPage extends ConsumerWidget {
   const DetailPage(this.noteId, {super.key});
@@ -9,23 +10,35 @@ class DetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final note = ref.watch(getNoteProvider(noteId)).value;
+    final note = ref.watch(getNoteProvider(noteId));
 
-    return Scaffold(
-      appBar: AppBar(title: Text(note?.title ?? 'エラー')),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            (note != null)
-                ? Text(
-                    note.summary,
-                    style: Theme.of(context).textTheme.bodyLarge,
+    return note.when(
+      data: (Note? note) {
+        return Scaffold(
+          appBar: AppBar(title: Text(note?.title ?? '')),
+          body: Padding(
+            padding: const EdgeInsets.all(8),
+            child: note != null
+                ? Column(
+                    children: [
+                      Text(
+                        note.summary,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
                   )
-                : const Center(child: Text('Internal Error')),
-          ],
-        ),
-      ),
+                : null,
+          ),
+        );
+      },
+      loading: () {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+      error: (_, __) {
+        return const Center(child: null);
+      },
     );
   }
 }
